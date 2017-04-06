@@ -47,3 +47,54 @@ function insertionSort(rootArr) {
 }
 
 insertionSort(arr);
+
+// 如果比较操作的代价比交换操作大的话，可以采用二分查找法来减少比较操作的数目，简称二分查找排序
+
+function binarySearchInsertionSort(rootArr) {
+
+    function binarySearch(array, start, end, temp) {
+        var middle;
+        while (start <= end) {
+            middle = Math.floor((start + end) / 2);
+            if (array[middle] > temp) {
+
+                if (middle == 0) return middle;
+                else if (array[middle - 1] < temp) {
+                    return middle;
+                } else {
+                    end = middle - 1;
+                }
+            } else {
+                if (array[middle + 1] >= temp) {
+                    return middle + 1;
+                } else {
+                    start = middle + 1;
+                }
+            }
+        }
+        return end + 1;
+    }
+
+    function insertionSort(arr) {
+        var arr = rootArr.slice();
+        var i, j, k, temp, length = arr.length;
+        for (i = 1; i < length; i++) {
+            temp = arr[i];
+
+            // 前面那数小于temp时，跳过无需排序
+            if (arr[i - 1] < temp) continue;
+
+            k = binarySearch(arr, 0, i - 1, temp);
+
+            for (j = i; j > k; j--) {
+                arr[j] = arr[j - 1];
+            }
+            arr[k] = temp;
+        }
+        return arr;
+    }
+
+    console.log(insertionSort(rootArr));
+}
+
+binarySearchInsertionSort(arr);
