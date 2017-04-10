@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<iframe id="oIframe" src="otherChain.html" frameborder="0"></iframe>
+<script>
+    var iframeWindow = document.querySelector('#oIframe').contentWindow;
+    console.log("iframe's array: " + iframeWindow.arr instanceof Array);
+
+    var arr = [1, 2, 3, 4, 5, 6];
+    console.log(({}).toString.call(arr));
+    console.log("page's array" + arr instanceof Array);
+</script>
+</body>
+</html>
