@@ -34,6 +34,31 @@
     console.log(price[account.indexOf(maxAccount)]);
 })("10 5 1 8");
 
+(function (str) {
+    var arr = str.split(' ');
+
+    arr.forEach(function (ele, ind) {
+        arr[ind] = +ele;
+    });
+
+    arr.sort(function (a, b) {
+        return a - b;
+    });
+
+    var max = {value: 0}, len = arr.length;
+    arr.forEach(function (ele, ind) {
+        var c = len - ind;
+        var temp = c * ele;
+        if (temp > max.value) {
+            max.value = temp;
+            max.index = ele;
+        }
+    });
+
+    console.log(max.index);
+
+})("2 8 10 7");
+
 function jiecheng(n) {
     var sum = n;
     while (n > 1) {
