@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #flexable-box {
+            display: -webkit-flex;
+            display: flex;
+            flex-direction: row;/*主轴排列的方向*/
+            flex-wrap: nowrap;/*换行方式*/
+            /*相当于flex-direction和flex-wrap的结合
+            flex-flow: row wrap;*/
+            justify-content: center;/*主轴对齐方式*/
+            align-items: flex-end;/*交叉轴对齐方式*/
+        }
+
+        #flexable-box .flex-item {
+            color: #ffffff;
+            width: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="flexable-box"></div>
+
+<script>
+    var colors = ['#d40045', '#ee0026', '#ff590b', '#ff7f00', '#ffcc00', '#ffe600', '#cce708', '#99cf15'];
+
+    var fragment = document.createDocumentFragment(), newP, cInd;
+    for (var i = 0; i < 30; i++) {
+        newP = document.createElement('p');
+        newP.className = 'flex-item';
+        newP.textContent = i;
+
+        cInd = Math.floor(colors.length * Math.random());
+        newP.style.backgroundColor = colors[cInd];
+        newP.style.height = Math.floor(500 * Math.random()) + 'px';
+
+        fragment.appendChild(newP);
+    }
+    document.querySelector('#flexable-box')
+            .appendChild(fragment);
+
+</script>
+</body>
+</html>
