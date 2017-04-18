@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>4-18今日头条</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .calculator {
+            overflow: auto;
+            width: 320px;
+            background: #666666;
+        }
+
+        .top-result {
+            width: 280px;
+            height: 45px;
+            line-height: 45px;
+            font-size: 22px;
+            background-color: #ffffff;
+            text-align: right;
+            color: #000000;
+            padding-right: 5px;
+            box-shadow: 1px 2px 10px #4C5564;
+            border-radius: 5px;
+            margin: 10px auto;
+        }
+
+        .button-area {
+            font-size: 0;
+        }
+
+        .button-area li {
+            box-sizing: border-box;
+            border: 1px solid #000000;
+            width: 67px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 13px;
+            margin-left: 10px;;
+            color: #ffffff;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .button-area li:nth-of-type(4n+1) {
+            margin-right: 10px;
+        }
+
+        .button-area li:first-of-type {
+            display: block;
+            position: relative;
+            top: 0;
+            left: 230px;
+            margin-right: 10px;
+            background-color: #3F4856;
+        }
+
+        .button-area li.num {
+            background-color: #3367AF;
+        }
+
+        .button-area li.sign {
+            background-color: #6E4A35;
+        }
+
+        .button-area li:last-of-type {
+            background-color: #D47500;
+            display: block;
+            margin: 0 auto 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <p class="top-result">0</p>
+
+    <ul class="button-area">
+        <li id="clear">清屏</li>
+        <li class="num">7</li>
+        <li class="num">8</li>
+        <li class="num">9</li>
+        <li class="sign">*</li>
+        <li class="num">4</li>
+        <li class="num">5</li>
+        <li class="num">6</li>
+        <li class="sign">-</li>
+        <li class="num">1</li>
+        <li class="num">2</li>
+        <li class="num">3</li>
+        <li class="sign">+</li>
+        <li class="num">0</li>
+        <li class="sign">(</li>
+        <li class="sign">)</li>
+        <li class="sign">/</li>
+        <li class="sign">=</li>
+    </ul>
+</div>
+
+<script>
+    (function (global) {
+
+        function delgrate(event, tagName, fn) {
+            var e = event || window.event,
+                    target = e.target || e.srcElement;
+            if (target.tagName.toLowerCase() == tagName) {
+                fn.call(null, target);
+            }
+        }
+
+        var result = "",
+                temp,
+                curr,
+                nonceResult,
+                oResult = document.querySelector('.top-result');
+
+        function numHandler(target) {
+            curr = target.innerHTML;
+            nonceResult = oResult.innerHTML;
+
+            if (curr == '=') {
+                try {
+                    temp = eval(result);
+                } catch (e) {
+                    temp = '请重新输入数字';
+                }
+                result = '';
+            } else if (target.getAttribute('id') == 'clear') {
+                result = "";
+                temp = 0;
+            } else {
+
+                if (target.classList.contains('sign')) {
+                    // 第一次输入时
+                    if (nonceResult.length == 1 && nonceResult == '0') {
+                        temp = curr;
+                    } else {
+                        temp = nonceResult.replace(/[\*\-\+\/\(\)]$/, '') + curr;
+                    }
+                } else {
+                    // 第一次输入时
+                    if (nonceResult.length == 1 && nonceResult == '0') {
+                        temp = curr;
+                    } else if (result == '') { // 结算完再次计算时
+                        temp = curr;
+                    } else {
+                        temp = nonceResult + curr;
+                    }
+                }
+                result = temp;
+
+            }
+            oResult.innerHTML = temp;
+
+        }
+
+        document.querySelector('.button-area')
+                .onclick = function (e) {
+            delgrate(e, 'li', numHandler);
+        }
+
+    })(window);
+</script>
+</body>
+</html>
