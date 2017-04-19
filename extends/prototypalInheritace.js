@@ -18,7 +18,9 @@ var person = {
 var instance1 = object(person);
 instance1.name = 'Van';
 instance1.friends.push('God');
-
+console.log(instance1.name);
+console.log(person.name);
+console.log("person.friends: " + person.friends);
 
 var instance2 = object(person);
 instance2.friends.push('Git');

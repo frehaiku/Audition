@@ -6,7 +6,14 @@
 
 - 算法
     - [x] [直接插入排序](Algorithm/insertionSort.js)
+    - [x] [快速排序](Algorithm/quickSortDigging.js)
     - [x] [快速排序排序](Algorithm/quickSortDigging.js)
+    - [x] [选择排序](Algorithm/selectionSort.js)
+    - [x] [希尔排序](Algorithm/shellSort.js)
+    - [ ] 归并排序
+    - [ ] 堆排序
+    - [ ] 桶排序
+    - [ ] 基数排序
     - [x] [找出字符串中出现次数最少的字符](Algorithm/objectFindLess.js)
     
 - 日常笔试题整理
