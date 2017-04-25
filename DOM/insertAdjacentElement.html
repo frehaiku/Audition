@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="a">
+    <div id="b">bbbbbbbb</div>
+    <div id="c">cccccccc</div>
+</div>
+<script>
+    var a = document.querySelector('#a')
+            , b = document.querySelector('#b')
+            , c = document.querySelector('#c')
+//    a.insertBefore(c, b)
+    // beforebegin
+    // <p>
+    //   afterbegin
+    //    foo
+    //   beforeend
+    // <p>
+    // afterend
+
+
+    // referElement.insertAdjacentElement(position, insertEle);
+//    a.insertAdjacentElement('afterend', c);
+
+
+// parentNode.prepend(Node);
+    // 在父节点的第一子节点之前插入一系列Node对象
+//    a.prepend(c);
+
+    a.append(b);
+</script>
+</body>
+</html>
