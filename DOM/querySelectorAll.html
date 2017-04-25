@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>querySelector</title>
+</head>
+<body>
+<div id="a">
+    <div class="b">
+        outside bbbbbbb
+        <div class="b">inner bbbbbbb</div>
+    </div>
+    <div class="c">ccccc</div>
+</div>
+
+<script>
+    var b = document.querySelector('#a');
+    var b1 = document.getElementById('a');
+    console.log(b.innerHTML);
+    console.log(b.innerText);
+    console.log(b.textContent);
+
+    /*queryselector API 与 getElementsByTagName的区别：
+    * 1. 后者会根据DOM具体结构随时更新集合，而前者并不会
+    * 2. 后者实时的元素集合不需要预先获得所有的元素信息，
+    * 而前者会收集所有的信息到一个静态列表中里，因此会更消耗性能
+    * */
+    var ele1 = document.querySelectorAll('div')
+            , ele2 = document.getElementsByTagName('div')
+            , newE = document.createElement('div')
+
+    document.body.appendChild(newE)
+
+    console.log(ele1)
+    console.log(ele2)
+
+</script>
+</body>
+</html>

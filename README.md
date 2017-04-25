@@ -36,7 +36,8 @@
     - [x] [JS继承之原型式继承](prototypalInheritace.js)
     - [x] [JS继承之寄生式继承](extends/parasiticExtends.js)
     - [x] [JS继承之寄生组合式继承](extends/parasiticCombination.js)
- 
+    - [x] [querySelectorAll与getElementsByTagName的区别](DOM/querySelectorAll.html)
+
 - css
     - [x] [FlexBox布局之统计图的应用](Flexbox/diagramChart.html)
     - [x] [FlexBox布局之垂直水平居中的应用](Flexbox/verticalCenter.html)
