@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .flexbox {
+
+        }
+
+        .vid {
+            background: #333333;
+            width: 50%;
+            height: 50vw;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<!--
+1. 有A，B，C，D和E共5所学校。在一次检查评比中，已知E肯定不是第二名或第三名，他们相互进行推测。A说，E一定是第一名；B说，我校是第二名；C说，A校最差；D说，C不是最好；E说，D是第一名。结果只有实际排名为第一和第二名的学校说的是真话了, 其他学校都说错了。
+
+2. 请用算法实现，从给定的无序、不重复的数组A中，取出N个数，使其相加和为M。并给出算法的时间/空间复杂度
+
+3. 请用纯CSS实现一个自适应正方形，宽是屏幕宽度的50%，且水平垂直居中于屏幕中央。
+-->
+<div class="flexbox">
+    <div class="vid"></div>
+</div>
+
+<!--
+面试时写的错误代码...
+<script>
+    (function (arr, n, m) {
+        var sortion = function (a, b) {
+            return a - b;
+        }
+
+        arr.sort(sortion);
+
+        var avg = m / n;
+        var leftArr = arr.filter(function (ele) {
+            return ele < avg;
+        });
+
+        var rightArr = arr.filter(function (ele) {
+            return ele >= avg;
+        });
+        // 取左边的数组的个数和右边数组的个数
+        var leftCount = n / 2, rightCount = n - leftCount;
+
+        var result = [];
+        for (var i = 1; i < leftCount; i++) {
+            result.push(leftArr[leftArr.length - i]);
+        }
+
+        for (var j = 1; j <= rightCount; j++) {
+            result.push(rightArr[j]);
+        }
+
+        console.log(result);
+        // 时间复杂度： n
+    })([1, 5, 7, 9, 2, 6, 3], 2, 3);
+</script>-->
+</body>
+</html>
