@@ -19,16 +19,13 @@
         return a - b;
     });
 
-    var q = -1, len = sort.length;
+    var q = 0, len = sort.length;
     for (var i = 0; i < len; i++) {
         if (arr[i] === sort[q]) {
             q++;
-            if (q == len) {
-                break;
-            }
         }
-
     }
 
     console.log(len - q);
-})([17, 7, 9, 19]);
+
+})([9, 17, 19, 7]);
