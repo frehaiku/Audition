@@ -21,8 +21,12 @@
     - [x] [简述ARP的工作原理](Network/index.md#简述arp的工作原理)
     
 - 日常笔试题整理
+    - [x] [2016京东笔试题01](Algorithm/ACM/JD201601.js)
+    - [x] [2016京东笔试题02](Algorithm/ACM/JD201602.js)
     - [x] [4月WPS笔试题](DailyProblem/2017-4-15WPS/README.md)
     - [x] [4月今日头条笔试题](DailyProblem/2017-4-18toutiao/README.md)
+    - [x] [4月今日头条面试题](DailyProblem/2017-4-27toutiao/README.md)
+    - [x] [4月百度笔试编程题](Algorithm/ACM/baidu20160427.js)
     
 - JS
     - [x] [修改原Array对forEach的影响](ArrayMethods/forEachEffect.js)
@@ -37,6 +41,7 @@
     - [x] [JS继承之寄生式继承](extends/parasiticExtends.js)
     - [x] [JS继承之寄生组合式继承](extends/parasiticCombination.js)
     - [x] [querySelectorAll与getElementsByTagName的区别](DOM/querySelectorAll.html)
+    - [x] [各种插入元素至参考元素之前的方法](DOM/insertAdjacentElement.html)
 
 - css
     - [x] [FlexBox布局之统计图的应用](Flexbox/diagramChart.html)
