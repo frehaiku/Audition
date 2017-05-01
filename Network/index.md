@@ -35,3 +35,16 @@
     广播发送ARP请求，单播发送ARP响应
 
 ## HTTP基本构成
+
+Request中，由Request line(请求行)、Header（请求头）、Body（可选）构成。三者中间用CLRF(换行符隔开)
+
+- Request line行中由 `Method SP Request-URL SP httpVersion CRLF`构成，method就是GET、POST等方法，SP对应ASCII码中的空格，如 `GET http://www.meitu.com HTTP/1.1`
+- Header部分由键值对构成，`key: 空格 value CRLF`
+    - 常见的请求字段头
+    - Host 客户机想访问的主机ip，在http1.0中必须包含此头
+    - Accept 表示浏览器支持处理的数据类型
+    - Accept-Encoding 表示支持的数据压缩格式
+    - Accept-language 表示客户端的语言环境
+    - Referer：从哪个url来
+    - user-agent：客户端身份标识
+    - cookie：客户端一种存储数据的方式
