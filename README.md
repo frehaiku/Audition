@@ -34,14 +34,16 @@
     - [x] [删除数组元素的方法](ArrayMethods/removes.js)
     - [x] [instanceOf检测数组时的bug](ArrayMethods/instanceOfBug.html)
     - [x] [JS继承之原型链继承](extends/prototypeExtends.js)
-    - [x] [JS继承之构造函数继承](extends/prototypeExtends.js)
-    - [x] [JS继承之原型链继承](extends/constructorStealing.js)
+    - [x] [JS继承之构造函数继承](extends/constructorStealing.js)
     - [x] [JS继承之原型链和构造函数的组合式继承](extends/combinationInheritance.js)
     - [x] [JS继承之原型式继承](prototypalInheritace.js)
     - [x] [JS继承之寄生式继承](extends/parasiticExtends.js)
     - [x] [JS继承之寄生组合式继承](extends/parasiticCombination.js)
     - [x] [querySelectorAll与getElementsByTagName的区别](DOM/querySelectorAll.html)
     - [x] [各种插入元素至参考元素之前的方法](DOM/insertAdjacentElement.html)
+    - [x] [innerText、innerHTML与textContent的区别](DOM/textContent-innerText-innerHtml.html)
+    - [x] [bind的polyfill的实现](Algorithm/JS/bind-polyfill.js)
+    - [x] [canvas压缩图片与处理图片](DOM/compressImage.html)
 
 - css
     - [x] [FlexBox布局之统计图的应用](Flexbox/diagramChart.html)

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>compressImage DEMO</title>
+</head>
+<body>
+
+<canvas></canvas>
+<label>
+    输入0-1的小数：
+    <input type="text" id="compressRate">
+</label>
+<button id="becameGray">变灰度</button>
+
+<img src="" alt="" id="compress-img">
+
+<img src="" alt="" id="grayscale">
+
+
+<script>
+    var afterImg = document.querySelector('#compress-img')
+            , grayImg = document.querySelector('#grayscale')
+            , oInput = document.querySelector('#compressRate')
+            , oButGary = document.querySelector('#becameGray')
+            , staticFile = './images/google.png'
+
+
+    var oCanvas = document.querySelector('canvas')
+            , cxt = oCanvas.getContext('2d')
+
+    var img = new Image();
+
+    img.onload = function () {
+        oCanvas.width = this.width
+        oCanvas.height = this.height
+
+        preventbgGray(cxt)
+// api参数有：drawImage(img, dx, dy, dWidth, dHeight)
+        cxt.drawImage(this, 20, 20, oCanvas.width, oCanvas.height)
+
+// api参数有：drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+//        cxt.drawImage(this, 0, 0, 50, 50, 10, 10, oCanvas.width, oCanvas.height)
+
+        oInput.onblur = function () {
+            var quality = parseFloat(this.value)
+
+            if (quality <= 1) {
+                afterImg.src = oCanvas.toDataURL('image/jpeg', quality)
+            }
+        }
+
+        oButGary.onclick = createGray
+    }
+    img.src = staticFile
+
+
+
+    // 阻止canvas背景为黑色
+    function preventbgGray(cxt) {
+        // prevent from transform base64 black color of background
+        cxt.fillStyle = '#fff'
+        cxt.fillRect(0, 0, oCanvas.width, oCanvas.height)
+    }
+
+    // 新建一个canvas图层
+    function createGray() {
+        var can = document.createElement('canvas')
+                , cxt = can.getContext('2d')
+                , img = new Image()
+
+        img.onload = function () {
+
+            can.width = img.width
+            can.height = img.height
+
+            preventbgGray(cxt)
+
+            cxt.drawImage(img, 0, 0, can.width, can.height)
+
+            var imageData = cxt.getImageData(0, 0, can.width, can.height)
+            cxt.putImageData(grayscale(imageData), 0, 0)
+
+            grayImg.src = can.toDataURL('image/jpeg', 0.92)
+
+        }
+
+        img.src = staticFile
+    }
+    // 变灰
+    function grayscale(pixels) {
+        var d = pixels.data
+                , len = d.length
+
+        for (var i = 0; i < len; i += 4) {
+            var r = d[i]
+            var g = d[i + 1]
+            var b = d[i + 2]
+            d[i] = d[i + 1] = d[i + 2] = (r + g + b) / 3
+        }
+        return pixels
+    }
+
+</script>
+</body>
+</html>
