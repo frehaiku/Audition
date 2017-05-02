@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>textContent-innerText-innerHtml的区别</title>
+</head>
+<body>
+
+<p id="content">
+    <span style="color: red;display: none;">
+        <\/script>
+    </span>
+</p>
+
+<div id="tplElement">
+    <script>
+        (function () {
+            console.log('I in template inner')
+        })();
+    </script>
+</div>
+
+<script>
+    var tplInnerText = document.querySelector('#tplElement')
+            , oContent = document.querySelector('#content')
+
+    /*
+     * innerText与textContent的第一个区别是：
+     * innerText不会返回元素中的script元素或style元素的内容，而textContent会
+     * */
+    console.log(tplInnerText.innerText)
+    console.log(tplInnerText.textContent)
+
+    /*
+     * innerText与textContent的第二个区别是：
+     * innerText遇到display:none样式时，并不会返回隐藏元素的文本，而textContent会
+     * */
+    console.log(oContent.innerText)
+    console.log(oContent.textContent)
+    console.log(oContent.innerHTML)
+
+    /*
+     *  innerText与textContent的第三个区别是：
+     *  innerText受css影响，会触发reflow。而textContent不会
+     * */
+
+    /**
+     * 与innerText与innerHtml的区别：
+     * textContent不会被解析为HTML，所以textContent具有更好的性能
+     */
+
+
+    function quickSortion(arr) {
+        var twin = arr.slice();
+
+        if (twin.length <= 1) {
+            return twin;
+        }
+
+        var len = twin.length
+                , mid = Math.floor(len / 2)
+                , midEle = twin[mid]
+                , leftArr = []
+                , rightArr = []
+                , nonce;
+
+        for (var i = 0; i < len; i++) {
+
+            nonce = twin[i];
+            if (nonce < midEle) {
+                leftArr.push(nonce)
+            } else if (nonce > midEle) {
+                rightArr.push(nonce)
+            }
+        }
+
+        return quickSortion(leftArr).concat(midEle, quickSortion(rightArr));
+    }
+
+    console.log(quickSortion([3, 2, 9, 0, 25, 15]));
+</script>
+</body>
+</html>
