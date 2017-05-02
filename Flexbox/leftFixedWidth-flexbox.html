@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>左边固定宽度布局</title>
+    <style>
+        #flex-box {
+            display: flex;
+            height: 300px;
+        }
+
+        .left {
+            background-color: beige;
+            width: 200px;
+        }
+
+        .right {
+            background-color: pink;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+<div id="flex-box">
+    <div class="left">left</div>
+    <div class="right">right</div>
+</div>
+</body>
+</html>

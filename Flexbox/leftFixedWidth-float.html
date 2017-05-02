@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>左边固定宽度布局</title>
+    <style>
+        #box > div{
+            height: 300px;
+        }
+        .left {
+            float: left;
+            width: 200px;
+            background-color: beige;
+        }
+
+        .right {
+            margin-left: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <div class="left">left</div>
+    <div class="right">right</div>
+</div>
+</body>
+</html>
