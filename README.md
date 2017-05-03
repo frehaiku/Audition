@@ -9,7 +9,7 @@
     - [x] [快速排序](Algorithm/quickSortDigging.js)
     - [x] [选择排序](Algorithm/selectionSort.js)
     - [x] [希尔排序](Algorithm/shellSort.js)
-    - [ ] 归并排序
+    - [x] [归并排序](Algorithm/mergeSort.js)
     - [ ] 堆排序
     - [ ] 桶排序
     - [ ] 基数排序
