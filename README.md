@@ -44,6 +44,7 @@
     - [x] [innerText、innerHTML与textContent的区别](DOM/textContent-innerText-innerHtml.html)
     - [x] [bind的polyfill的实现](Algorithm/JS/bind-polyfill.js)
     - [x] [canvas压缩图片与处理图片](DOM/compressImage.html)
+    - [x] [Promise中resolve与reject的基本用法](Algorithm/JS/Promise/readFilePromise.js)
 
 - css
     - [x] [FlexBox布局之统计图的应用](Flexbox/diagramChart.html)
