@@ -45,6 +45,7 @@
     - [x] [bind的polyfill的实现](Algorithm/JS/bind-polyfill.js)
     - [x] [canvas压缩图片与处理图片](DOM/compressImage.html)
     - [x] [Promise中resolve与reject的基本用法](Algorithm/JS/Promise/readFilePromise.js)
+    - [x] [Promise应用：用尽可能快的方式生成有一万个相同字符的字符串](Algorithm/JS/Promise/produceChar.js)
 
 - css
     - [x] [FlexBox布局之统计图的应用](Flexbox/diagramChart.html)
