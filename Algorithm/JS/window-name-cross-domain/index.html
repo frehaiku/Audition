@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /**
+     *  window.name跨域原理：
+     *  其在不同页面的值是保持不变的
+     *
+     * 用iframe模拟一次请求，后端在返回的数据中设置window.name
+     * @param url
+     * @param fn
+     */
+    function windowNameCrossDomain(url, fn) {
+        const iframe = document.createElement('iframe')
+        let state = 0,
+                data
+        // 设置要请求的地址
+        iframe.src = url
+
+        iframe.onload = function () {
+            // 根据state的值设置一次src。不设置该值时onload函数会不断地执行
+            if (!state) {
+                state = 1
+                // 设置回本地的html页面是因为不设置会造成iframe的跨域
+                iframe.src = './proxy.html'
+            } else {
+                data = iframe.contentWindow.name
+                fn(JSON.parse(data))
+
+                document.body.removeChild(iframe)
+            }
+        }
+
+        document.body.appendChild(iframe)
+    }
+
+    windowNameCrossDomain('http://localhost:81/demo/window-name-cross-domain/data.php'
+    , function (data) {
+                console.log(data)
+            })
+</script>
+</body>
+</html>
