@@ -19,7 +19,7 @@
 
 // 该次排序结束 小于72的都放在左边 大于72的都放在右边
 // 按照此步骤继续递归
-var arr = [72, 6, 57, 88, 60, 42, 83, 73, 48, 85], len = arr.length;
+var arr = [7, 6, 5, 4, 3, 2], len = arr.length;
 
 function quickSortDiggingOrigin(arr) {
     var len = arr.length;
@@ -60,6 +60,69 @@ function quickSortDiggingOrigin(arr) {
 }
 
 console.log("quickSortDiggingOrigin: " + quickSortDiggingOrigin(arr));
+
+/*
+* in-place第二种内部交换法
+*
+* 思路：
+* 将pivot设置为最后一个元素，
+* 3 7 8 5 2 1 9 5 4
+* pivot = 4，storeInd = 0， i = 0
+* 用i做该数组的遍历：
+* 比较该数是否比pivot大
+* 是 ---> storeInd 与 i 位置的元素交换，且storeInd++
+* 第一轮：i = 0，storeInd = 0, 3 与其本身做交换
+* 第二轮：i = 4, storeInd = 1, 7与2交换
+* 3 2 8 5 7 1 9 5 4
+* 第三轮：i = 5, storeInd = 2, 8与1交换
+* 3 2 1 5 7 8 9 5 4
+*
+* storeInd = 3，此后没有小于pivot的数，结束此次循环
+* 此时，storeInd的数与pivot的数进行交换
+* 3 2 1 4 7 8 9 5 5
+*
+* 下轮递归执行：
+* [3, 2, 1]与[7, 8, 9, 5, 5]
+* */
+function quickSortionInPlace(twin) {
+    var arr = twin.slice()
+
+    function swap(array, i, k) {
+        var temp = array[i];
+        array[i] = array[k];
+        array[k] = temp;
+    }
+
+    function partition(arr, l, r) {
+        var pivotInd = r
+            , pivot = arr[pivotInd]
+            , storeInd = l;
+
+        for (var i = l; i < r; i++) {
+            if (arr[i] < pivot) {
+                swap(arr, i, storeInd++);
+            }
+        }
+        swap(arr, storeInd, r)
+
+        return storeInd;
+    }
+
+    function sort(array, left, right) {
+        if (left > right) {
+            return;
+        }
+
+        var storeIndex = partition(array, left, right);
+        sort(array, left, storeIndex - 1);
+        sort(array, storeIndex + 1, right);
+    }
+
+    sort(arr, 0, arr.length - 1);
+    return arr;
+}
+
+console.log("quickSortionInPlace: " + quickSortionInPlace([3, 7, 8, 5, 2, 1, 9, 5, 4]));
 
 // 算法的一点点小优化
 var quickSortDiggingReform = function (arr) {
