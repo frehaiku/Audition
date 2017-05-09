@@ -10,7 +10,7 @@
     - [x] [选择排序](Algorithm/selectionSort.js)
     - [x] [希尔排序](Algorithm/shellSort.js)
     - [x] [归并排序](Algorithm/mergeSort.js)
-    - [ ] 堆排序
+    - [x] 堆排序
     - [ ] 桶排序
     - [ ] 基数排序
     - [x] [找出字符串中出现次数最少的字符](Algorithm/objectFindLess.js)
