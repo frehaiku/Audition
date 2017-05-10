@@ -47,6 +47,7 @@
     - [x] [Promise中resolve与reject的基本用法](Algorithm/JS/Promise/readFilePromise.js)
     - [x] [Promise应用：用尽可能快的方式生成有一万个相同字符的字符串](Algorithm/JS/Promise/produceChar.js)
     - [x] [window.name实现GET请求的跨域](Algorithm/JS/window-name-cross-domain/index.html)
+    - [x] [JS中的Event Loop](EventLoop/Native/README.md)
 
 - css
     - [x] [FlexBox布局之统计图的应用](Flexbox/diagramChart.html)
