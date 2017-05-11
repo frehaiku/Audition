@@ -10,7 +10,7 @@
     - [x] [选择排序](Algorithm/selectionSort.js)
     - [x] [希尔排序](Algorithm/shellSort.js)
     - [x] [归并排序](Algorithm/mergeSort.js)
-    - [ ] 堆排序
+    - [x] [堆排序](Algorithm/heapSortion.js)
     - [ ] 桶排序
     - [ ] 基数排序
     - [x] [找出字符串中出现次数最少的字符](Algorithm/objectFindLess.js)
@@ -47,6 +47,7 @@
     - [x] [Promise中resolve与reject的基本用法](Algorithm/JS/Promise/readFilePromise.js)
     - [x] [Promise应用：用尽可能快的方式生成有一万个相同字符的字符串](Algorithm/JS/Promise/produceChar.js)
     - [x] [window.name实现GET请求的跨域](Algorithm/JS/window-name-cross-domain/index.html)
+    - [x] [JS中的Event Loop](EventLoop/Native/README.md)
 
 - css
     - [x] [FlexBox布局之统计图的应用](Flexbox/diagramChart.html)
