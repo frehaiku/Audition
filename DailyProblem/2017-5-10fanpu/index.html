@@ -13,7 +13,7 @@
 
         var jiao = [], bing = [], nonce;
         for (var i = 0; i < account; i++) {
-//            nonce = read_line().split(' ');
+            //            nonce = read_line().split(' ');
             nonce = array[i].split(' ');
 
             if (jiao.length == 0) {
@@ -121,8 +121,8 @@
             }
         }
 
-//        var arr = read_line().split(' ');
-//        var arr = array;
+        //        var arr = read_line().split(' ');
+        //        var arr = array;
 
         array.forEach(function (ele) {
             var op = +ele.split(' ')[0];
@@ -149,6 +149,121 @@
         '1',
         '5'
     ]);
+
+    /**
+     * 给定一个二维整型数组，M行N列。对这个二维数组按顺时针方向，从外向内进行遍历。
+     请将结果打印出来，数字间以空格分隔。
+
+     1，输入为一维整型数组，以空格分开。
+     2，第一个数字为M：数组行数
+     3，第二个数字为N：数组列数
+     4，剩余数字为数组元素。按行从左往右，从上到下排列,共M*N个。
+     5，0 < M < 100,  0 < N < 100
+
+     输入
+     3 4 1 2 3 4 5 6 7 8 9 10 11 13
+     输出
+     1 2 3 4 8 13 11 10 9 5 6 7
+     **/
+    (function (line) {
+        var input_arrays = line.split(' ');
+        var row = +input_arrays[0];
+        var lie = +input_arrays[1];
+        input_arrays.splice(0, 2);
+
+        var arr = [];
+        for (var i = 0; i < row; i++) {
+            var inner = [];
+            for (var j = 0; j < lie; j++) {
+                inner.push(+input_arrays[j + lie * i]);
+            }
+            arr.push(inner);
+        }
+
+        var result = [];
+
+        /**
+         *
+         * @param sOuter 行开始index
+         * @param sInner 列开始index
+         * @param mW 最大行序号
+         * @param mH 最大列序号
+         */
+        function dp(sInner, sOuter, mW, mH) {
+            //最上面向右
+            for (var wr = sInner; wr < mW; wr++) {
+                if (result.indexOf(arr[sOuter][wr]) == -1) {
+                    result.push(arr[sOuter][wr]);
+                }
+            }
+            //最上面向下
+            for (var hb = sOuter + 1; hb < mH; hb++) {
+                if (result.indexOf(arr[hb][mW - 1]) == -1) {
+                    result.push(arr[hb][mW - 1]);
+                }
+            }
+            //最下面向左
+            for (var wl = mW - 2; wl >= sInner; wl--) {
+                if (result.indexOf(arr[mH - 1][wl]) == -1) {
+                    result.push(arr[mH - 1][wl]);
+                }
+            }
+            //最下面向上
+            for (var ht = mH - 2; ht > sOuter; ht--) {
+                if (result.indexOf(arr[ht][sInner]) == -1) {
+                    result.push(arr[ht][sInner]);
+                }
+            }
+            if (++sInner != --mW && ++sOuter != --mH) {
+                dp(sInner, sOuter, mW, mH);
+            }
+//            console.log(result);
+        }
+
+//        console.log(arr);
+        dp(0, 0, lie, row);
+        console.log(result.join(' '));
+    })('3 4 1 2 3 4 5 6 7 8 9 10 11 13');
+
+    (function (line) {
+        /*
+        * 对于每组输入数据，要求输出能够播放的最长广告片长，即不大于T的Tx数列子集的最大和。
+        *
+        * 输入： 60 5 37 40 16 30 18
+        * 输出：58
+        * */
+        var input_arrays = line.split(' ');
+        var account = +input_arrays[0];
+        input_arrays.splice(0, 2);
+
+        input_arrays.sort(function (a, b) {
+            return b - a;
+        });
+
+        var i = 0, one, sum, max = 0, maxArr = [];
+
+        function computed(init, arr) {
+        }
+    })('60 5 37 1 40 16 30 18');
+
+    (function (line) {
+        /**
+         * 有M个袋子，N个球，每个袋子至少放一个球，并且每个袋子中球的数量不能重复，问共有多少种放置方式？（注意：球和袋子均相同，不存在排列的情况。球可以不完全放入）
+         *
+         * 输入描述：
+         * 输入数据为一行，包含两个正整数，以空格分开，以换行符结束。两个数据分别为M,N。 0 < M < 100, 0 < N < 10000。
+         例如，2个袋子4个球的情况下 只存在 1 2  和 1 3 两种放置方式。
+
+         输入：2 4
+         输出：2
+         * @type {any}
+         */
+        var input_arrays = line.split(' ');
+        var a = +input_arrays[0];
+        var b = +input_arrays[1];
+
+    })('2 4');
+
 </script>
 </body>
 </html>
