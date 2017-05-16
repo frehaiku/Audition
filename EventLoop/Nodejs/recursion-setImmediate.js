@@ -4,7 +4,7 @@ setImmediate(function () {
 })
 setTimeout(function () {
     console.log('timeout')
-}, 600)
+}, 500)
 
 process.nextTick(function () {
     var end = new Date
