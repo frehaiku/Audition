@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>first-child与first-of-type的区别</title>
+  <style>
+    p:first-child {
+      color: red;}
+    p:first-of-type {
+      color: yellow;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <!--first-child是先从父级找第一个子元素，再匹配标签-->
+  <!--first-of-type是直接匹配第N个出现的元素-->
+  <span>111</span>
+  <p>222</p>
+  <p>333</p>
+</div>
+</body>
+</html>
