@@ -5,15 +5,16 @@
 ## TODO
 
 - 算法
-    - [x] [直接插入排序](Algorithm/insertionSort.js)
-    - [x] [快速排序](Algorithm/quickSortDigging.js)
-    - [x] [选择排序](Algorithm/selectionSort.js)
-    - [x] [希尔排序](Algorithm/shellSort.js)
-    - [x] [归并排序](Algorithm/mergeSort.js)
-    - [x] [堆排序](Algorithm/heapSortion.js)
+    - [x] [直接插入排序](Algorithm/Sortion/insertionSort.js)
+    - [x] [快速排序](Algorithm/Sortion/quickSortDigging.js)
+    - [x] [选择排序](Algorithm/Sortion/selectionSort.js)
+    - [x] [希尔排序](Algorithm/Sortion/shellSort.js)
+    - [x] [归并排序](Algorithm/Sortion/mergeSort.js)
+    - [x] [堆排序](Algorithm/Sortion/heapSortion.js)
     - [ ] 桶排序
     - [ ] 基数排序
     - [x] [找出字符串中出现次数最少的字符](Algorithm/objectFindLess.js)
+    - [x] [栈的应用-进制转换](Algorithm/dataStructures/radixConvert.js)
     
 - 计算机网络
     - [x] [在浏览器中输入地址后执行的全部过程](Network/index.md#在浏览器中输入wwwbaiducom后执行的全部过程)
