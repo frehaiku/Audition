@@ -6,10 +6,10 @@
 
 - 算法
     - [x] [直接插入排序](Algorithm/Sortion/insertionSort.js)
-    - [x] [快速排序](Algorithm/Sortion/quickSortDigging.js)
+    - [x] [快速排序](Algorithm/Sortion/quickSortDigging.js)&nbsp;&nbsp;&nbsp;[双路的快速排序](Algorithm/Sortion/quickSortionTwoWay.js)&nbsp;&nbsp;&nbsp;[三路的快速排序](Algorithm/Sortion/quickSortionThreeWay.js)
     - [x] [选择排序](Algorithm/Sortion/selectionSort.js)
     - [x] [希尔排序](Algorithm/Sortion/shellSort.js)
-    - [x] [归并排序](Algorithm/Sortion/mergeSort.js)
+    - [x] [归并排序](Algorithm/Sortion/mergeSort.js)&nbsp;&nbsp;&nbsp;[归并排序的底层实现](Algorithm/Sortion/originMergeSortion.js)&nbsp;&nbsp;&nbsp;[自底向上的归并排序](Algorithm/Sortion/mergeSortBottomUp.js)
     - [x] [堆排序](Algorithm/Sortion/heapSortion.js)
     - [ ] 桶排序
     - [x] [基数排序](Algorithm/Sortion/radixSortion.js)

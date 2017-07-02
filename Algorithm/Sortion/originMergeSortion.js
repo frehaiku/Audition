@@ -50,13 +50,7 @@ function mergeSort(array, n) {
   __mergeSort(array, 0, n - 1)
 }
 
-function productRand(min, max, n) {
-  var arr = new Array(n)
-  for (var i = 0; i < n; i++) {
-    arr[i] = ~~(Math.random() * (max - min)) + min
-  }
-  return arr
-}
+var productRand = require('./sortHelper')
 
 const n = 100
 
