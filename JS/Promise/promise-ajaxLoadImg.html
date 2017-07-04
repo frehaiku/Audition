@@ -1,46 +1,47 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
 <body>
-<!--<img src="../../../DOM/images/google.png" alt="">-->
+<!--<img src="../../DOM/images/google.png" alt="">-->
 <script>
 
-    const imgUrl = '../../../DOM/images/google.png'
+  const imgUrl = '../../DOM/images/google.png'
 
-    const imgLoad = function (imgUrl) {
-        return new Promise(function (resolve, reject) {
-            const request = new XMLHttpRequest()
+  const imgLoad = function (imgUrl) {
+    return new Promise(function (resolve, reject) {
+      const request = new XMLHttpRequest()
 
-            request.open('get', imgUrl)
-            request.responseType = 'blob'
+      request.open('get', imgUrl)
+      request.responseType = 'blob'
 
-            request.onload = function () {
-                if (request.status == 200) {
-                    resolve(request.response)
-                } else {
-                    reject(request.status)
-                }
-            }
+      request.onload = function () {
+        if (request.status == 200) {
+          resolve(request.response)
+        } else {
+          reject(request.status)
+        }
+      }
 
-            request.send();
-        })
-    }
-
-    imgLoad(imgUrl).then(url => {
-        const newImg = new Image()
-        newImg.src = window.URL.createObjectURL(url)
-
-        document.body.appendChild(newImg)
+      request.send();
     })
-            .catch(code => {
-                console.error('error HTTP code' + code)
-            })
+  }
+
+  imgLoad(imgUrl)
+          .then(url => {
+            const newImg = new Image()
+            newImg.src = window.URL.createObjectURL(url)
+
+            document.body.appendChild(newImg)
+          })
+          .catch(code => {
+            console.error('error HTTP code' + code)
+          })
 </script>
 </body>
 </html>
