@@ -49,6 +49,8 @@
     - [x] [Promise中resolve与reject的基本用法](Algorithm/JS/Promise/readFilePromise.js)
     - [x] [Promise应用：用尽可能快的方式生成有一万个相同字符的字符串](Algorithm/JS/Promise/produceChar.js)
     - [x] [window.name实现GET请求的跨域](Algorithm/JS/window-name-cross-domain/index.html)
+    - [x] [Promise.all中使用map组合任务](JS/Promise/thenReturnPromise01.js)
+    - [x] [Promise实现队列](JS/Promise/thenReturnPromise02.js)
     - [x] [JS中的Event Loop](EventLoop/Native/README.md)
     - [x] [zepto源码之对象复制](DailyProblem/201706/zeptoExtend.js)
 
