@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>仿荔枝FM 固定layout viewport布局</title>
+  <script>
+    // 根据视觉视图动态改变scale
+    // scale = ideal vw / visual vw
+    function doScale() {
+      var scale = window.screen.width / 640
+      document.write(`<meta name="viewport" content="width=640, initial-scale=${scale}, minimum-scale=${scale}, maximum-scale=${scale}, user-scalable=no">`)
+    }
+    doScale()
+//    window.onresize = doScale
+  </script>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;font-size: 34px;}
+  </style>
+</head>
+<body>
+  <p style="width: 640px;">w100 jljlfjal</p>
+  <p style="background:#000; width: 320px;">w50</p>
+</body>
+</html>
