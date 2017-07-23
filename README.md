@@ -11,7 +11,7 @@
     - [x] [希尔排序](Algorithm/Sortion/shellSort.js)
     - [x] [归并排序](Algorithm/Sortion/mergeSort.js)&nbsp;&nbsp;&nbsp;[归并排序的底层实现](Algorithm/Sortion/originMergeSortion.js)&nbsp;&nbsp;&nbsp;[自底向上的归并排序](Algorithm/Sortion/mergeSortBottomUp.js)
     - [x] [堆排序](Algorithm/Sortion/heapSortion.js)
-    - [ ] 桶排序
+    - [x] [桶排序](Algorithm/Sortion/bucketSortion.js)
     - [x] [基数排序](Algorithm/Sortion/radixSortion.js)
     - [x] [找出字符串中出现次数最少的字符](Algorithm/objectFindLess.js)
     - [x] [栈的应用-进制转换](Algorithm/dataStructures/radixConvert.js)
