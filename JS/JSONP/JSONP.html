@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<script>
+  window.JSONP = (function () {
+    let counter = 0
+
+    /**
+     *
+     * @param url
+     * @param opt - param {String} callback key (default: jsonpcb)
+     *            - name {String} callback value
+     * @param fn
+     * @constructor
+     */
+    function JSONP(url, opts, fn) {
+      if (typeof opt == 'function') {
+        fn = opts
+        opts = {}
+      }
+      const prefix = '_JSONP'
+      let id = opts.name || `${prefix}${counter++}`
+      let param = opts.param || 'jsonpcb'
+      let urlEnd = ~url.indexOf("?") ? `&${param}=${id}` : `?${param}=${id}`
+
+      let noop = function () {}
+      let target = document.getElementsByTagName('script')[0] || document.head
+      let script
+
+      window[id] = data => {
+        fn && fn.call(null, data)
+      }
+
+      function cleanup() {
+        window[id] = noop
+        script && target.parentNode.removeChild(script)
+      }
+
+      function cancel() {
+        if (window[id]) {
+          cleanup()
+        }
+      }
+      script = document.createElement('script')
+      script.src = `${url}${urlEnd}`
+      target.parentNode.insertBefore(script, target)
+
+      script.onload = cancel
+    }
+    return JSONP
+  })()
+
+  const commonConf = {
+    param: 'cb'
+  }
+  JSONP('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=a&json=1&p=3&sid=1441_21100_20927&req=2&csor=1&_=1501337095482',
+          commonConf,
+          data => console.log(data))
+</script>
+</body>
+</html>
