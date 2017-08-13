@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>左边固定宽度布局</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;}
+    #wrap {
+      float: left;width: 100%;}
+    #wrap .right {
+      margin-left: 200px;
+      background-color: pink;
+      height: 300px;
+    }
+    .left {
+      float: left;
+      margin-left: -100%;
+      width: 200px;
+      height: 300px;
+      background-color: beige;
+    }
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <div class="right">RIGHT</div>
+</div>
+<div class="left">LEFT</div>
+</body>
+</html>
