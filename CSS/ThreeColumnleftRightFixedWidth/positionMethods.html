@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>左右块自适应，中间固定宽度</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;}
+    .wrap {
+      position: relative;}
+    .wrap > div {
+      height: 300px;
+    }
+    .left, .right {
+      background-color: beige;
+      width: 270px;
+      position: absolute;
+      top:0;
+    }
+    .left {
+      left: 0;}
+    .right {
+      right: 0;}
+    .mid {
+      background-color: pink;
+      margin-left: 270px;
+      margin-right: 270px;}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="left">left</div>
+  <div class="mid">mid</div>
+  <div class="right">right</div>
+</div>
+</body>
+</html>

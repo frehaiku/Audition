@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>【双飞翼布局】左右块自适应，中间固定宽度</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;}
+    /*左边定宽120px，右边定宽220px*/
+    #container {
+      width: 100%;
+    }
+    .column {
+      float: left;
+      height: 300px;
+      background-color: #f5ffb5;
+    }
+    #center {
+      margin-left: 120px;
+      margin-right: 220px;
+      background-color: #eaf0ff;
+      height: 300px;
+    }
+    #left {
+      width: 120px;
+      margin-left: -100%;
+    }
+    #right {
+      width: 220px;
+      margin-left: -220px;
+    }
+  </style>
+</head>
+<body>
+<div id="container" class="column">
+  <div id="center">center</div>
+</div>
+<div id="left" class="column">left</div>
+<div id="right" class="column">right</div>
+</body>
+</html>

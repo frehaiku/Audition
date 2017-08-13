@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>【圣杯布局】左右块自适应，中间固定宽度</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;}
+    /*左边定宽120px，右边定宽220px*/
+    .column {
+      float: left;
+      position: relative;
+      height: 120px;
+      background-color: #f5ffb5;
+    }
+    #container {
+      margin-left: 120px;
+      margin-right: 220px;
+    }
+    #center {
+      width: 100%;
+      background-color: #eaf0ff;
+    }
+    #left {
+      width: 120px;
+      margin-left: -100%;
+      left: -120px;
+    }
+    #right {
+      width: 220px;
+      margin-left: -220px;
+      right: -220px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 圣杯布局 -->
+  <div id="container">
+    <div id="center" class="column">center</div>
+    <div id="left" class="column">left</div>
+    <div id="right" class="column">right</div>
+  </div>
+</body>
+</html>

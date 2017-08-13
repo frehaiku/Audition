@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>左右块自适应，中间固定宽度</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;}
+    .left, .right{
+      background-color: beige;
+      width: 300px;
+      height: 100px;
+    }
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+    .mid {
+      background-color: pink;
+    }
+
+  </style>
+</head>
+<body>
+<div class="left">float: left</div>
+<div class="right">float：right</div>
+<div class="mid">中间块宽度自适应</div>
+</body>
+</html>
