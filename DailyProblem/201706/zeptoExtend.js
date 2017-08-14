@@ -1,42 +1,37 @@
 let key
 function type(obj) {
-  return obj == null ? String(obj) : typeof obj
+  return obj == null ? String(obj) : Object.prototype.toString.call(obj).match(/\w+(?=\])/)[0].toLowerCase()
 }
 function isObject(obj) {
   return type(obj) == 'object'
 }
 
-function isPlainObject(obj) {
-  return isObject(obj) && Object.getPrototypeOf(obj) == Object.prototype
-}
-
 function isArray(arr) {
-  return Array.isArray(arr) || arr instanceof Array
+  return type(arr) == 'array'
 }
 
 function extend(target, source, deep) {
   for (key in source)
-    if (!!deep && isPlainObject(source[key]) || isArray(source[key])) {
-      if (isPlainObject(source[key]) && !isPlainObject(target[key])) {
+    if (deep && (isObject(source[key]) || isArray(source[key]))) {
+      if (isObject(source[key]))
         target[key] = {}
-      }
-      if (isArray(source[key]) && !isArray(target[key])) {
+      if (isArray(source[key]))
         target[key] = []
-      }
       extend(target[key], source[key], deep)
-    } else if (source[key] != undefined) {
-      target[key] = source[key]
-    }
+    } else if (source[key] != void 0) target[key] = source[key]
 }
 
 let source = {
   a: {b: 2},
-  c: [1,5,8]
+  c: [1,5,8],
+  d: '123str',
+  e: 123
 }, target = {}
 
 extend(target, source, true)
 
 target.a.b = 3
+target.c.push(10)
+
 console.log(source)
 console.log(target)
-
