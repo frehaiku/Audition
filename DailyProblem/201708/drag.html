@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Drag Demo</title>
+  <style>
+    #dragBlock {
+      width: 200px;
+      height: 200px;
+      background-color: #fff09a;
+      position: fixed;
+      left: 0;
+      top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div id="dragBlock"></div>
+<script>
+  window.onload = init
+
+  function init() {
+    let drag = document.getElementById('dragBlock')
+
+    let ofx = 0, ofy = 0, isStart = false
+
+    let maxW = document.documentElement.clientWidth - drag.offsetWidth,
+            maxH = window.innerHeight - drag.offsetHeight
+
+    drag.onmousedown = function ({offsetX, offsetY}) {
+      ofx = offsetX
+      ofy = offsetY
+      isStart = true
+    }
+    drag.onmouseup = function () {
+      isStart = false
+    }
+    drag.onmousemove = function (evt) {
+      if (!isStart) return false
+      let changeL = evt.clientX - ofx
+      let changeT = evt.clientY - ofy
+
+      drag.style.left = `${changeL < 0 ? 0 :
+              changeL > maxW ? maxW : changeL}px`
+      drag.style.top = `${changeT < 0 ? 0 :
+              changeT > maxH ? maxH : changeT}px`
+    }
+  }
+</script>
+</body>
+</html>
