@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>zIndex失效的情况---相同层级下，小zIndex的子级Zindex很大（却不起作用）</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;}
+    #container {
+      position: relative;}
+    .zidx1 {
+      z-index:1;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #f5ffb5;
+    }
+    .zidx0 {
+      z-index: 0;
+      position: relative;
+    }
+    .zidx999 {
+      position: inherit;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="zidx1"></div>
+    <div class="zidx0">
+      <div class="zidx999">我是设置了zIndex为999的文本段落</div>
+    </div>
+  </div>
+</body>
+</html>
