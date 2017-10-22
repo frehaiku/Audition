@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>父子关系时，失效</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;}
+    .parent {
+      position: relative;
+      z-index: 10;
+      width: 100px;
+      height: 300px;
+      background-color: #ffcdee;
+    }
+
+    .child {
+      position: absolute;
+      z-index: -5;
+      width: 50px;
+      height: 50px;
+      background-color: #9fbfff;
+    }
+  </style>
+</head>
+<body>
+<div class="parent">
+  <div class="child"></div>
+</div>
+</body>
+</html>

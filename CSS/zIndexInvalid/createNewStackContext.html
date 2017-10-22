@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS3 Transform create new stacking context</title>
+  <style>
+    .transform-el,
+    .bottom-el {
+      position: absolute;
+      height: 120px;
+      border: 1px solid #999;
+    }
+    .transform-el {
+      background-color: #ffdc00;
+    }
+    .top-el {
+      position: absolute;
+      z-index: 2;
+      background-color: #af9;
+    }
+    .bottom-el {
+      position: absolute;
+      top: 348px;
+      left: 40px;
+      z-index: 1;
+      background-color: #0074d9;
+    }
+
+    .top-el pre {
+      background-color: #ddd;
+    }
+    .bottom-el pre {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+<h1>CSS3 Transform create new stacking context</h1>
+<div class="question">
+  <p>CSS3 transform create a new stacking context.</p>
+  <p>Making child element's z-index effect to the new stacking context.</p>
+  <p>When you depend on the default stacking context(Code in HTML), CSS3 transform maybe let you in trouble.</p>
+  <p>To avoid this:</p>
+  <p>Please remove CSS3 transform after transform end.</p>
+</div>
+
+<h2>Example</h2>
+<button class="toggle-btn">Parent add transform</button>
+<div class="transform-el">
+  parent element (default stacking context)
+  <div class="top-el">
+    <span>child element z-index: 2</span>
+    <br><br>
+    <pre>.top-el {position: absolute; z-index: 2;}</pre>
+  </div>
+</div>
+<div class="bottom-el">
+  <br><br><br><br>
+  <span>sibling element z-index: 1</span>
+  <pre>.bottom-el {position: absolute; z-index: 1;}</pre>
+</div>
+<script>
+  document.querySelector('.toggle-btn').addEventListener('click', function() {
+    var el = document.querySelector('.transform-el');
+
+    // transform 形成了新的 stacking context
+    // 造成 top-el 的 z-index 针对于这个新的 stacking context
+    // 而不是原来的 default stacking context (html)
+    // 因此让人感觉 z-index 失效了似得, 其实不是失效, 只是换了场地(stack)
+    //
+    // 首先, 界面上的布局是这样的, 元素都处于默认的 stacking context
+    // 1. parent element(简称PE) 与 sibling element(简称SE) 是同级的
+    // 2. SE 由于使用了 z-index, 因此层级比 PE 高
+    // 3. child element(简称CE) 使用了高于 SE 的 z-index, 因此层级高于 SE
+    //
+    // 当给 PE 添加了 transform 后, stack的情况就变化了
+    // 1. PE 的 transform 让其形成了新的 stacking context
+    // 2. CE 是 PE 的子元素, 因此 CE 处于这个新的 stacking context
+    // 3. CE 的 z-index 现在影响的也是这个新的 stacking context
+    // 4. 现在 SE 与 CE 的 z-index 作用的 stacking context 都不一样, 因此不具可比性
+    // 5. 由于 SE 层级高于 PE, 因此 PE 的子元素层级怎么样都会低于 SE
+    // 6. 因此给 CE 设置任何的 z-index 都无法改变这种处境, z-index 不可能跨 stacking context
+    // 7. 因此以后设置 z-index, 首先要想一想它的 stacking context 在哪里
+    if (el.style['-webkit-transform']) {
+      el.style['-webkit-transform'] = '';
+      this.innerHTML = 'Parent add transform';
+    } else {
+      el.style['-webkit-transform'] = 'scale(1, 1)';
+      this.innerHTML = 'Parent remove transform';
+    }
+  }, false);
+</script>
+</body>
+</html>
