@@ -36,12 +36,12 @@
     - [x] [reduce归并方法](ArrayMethods/reduce.js)
     - [x] [删除数组元素的方法](ArrayMethods/removes.js)
     - [x] [instanceOf检测数组时的bug](ArrayMethods/instanceOfBug.html)
-    - [x] [JS继承之原型链继承](extends/prototypeExtends.js)
-    - [x] [JS继承之构造函数继承](extends/constructorStealing.js)
-    - [x] [JS继承之原型链和构造函数的组合式继承](extends/combinationInheritance.js)
-    - [x] [JS继承之原型式继承](extends/prototypalInheritace.js)
-    - [x] [JS继承之寄生式继承](extends/parasiticExtends.js)
-    - [x] [JS继承之寄生组合式继承](extends/parasiticCombination.js)
+    - [x] [JS继承之原型链继承](JS/extends/prototypeExtends.js)
+    - [x] [JS继承之构造函数继承](JS/extends/constructorStealing.js)
+    - [x] [JS继承之原型链和构造函数的组合式继承](JS/extends/combinationInheritance.js)
+    - [x] [JS继承之原型式继承](JS/extends/prototypalInheritace.js)
+    - [x] [JS继承之寄生式继承](JS/extends/parasiticExtends.js)
+    - [x] [JS继承之寄生组合式继承](JS/extends/parasiticCombination.js)
     - [x] [querySelectorAll与getElementsByTagName的区别](DOM/querySelectorAll.html)
     - [x] [各种插入元素至参考元素之前的方法](DOM/insertAdjacentElement.html)
     - [x] [innerText、innerHTML与textContent的区别](DOM/textContent-innerText-innerHtml.html)
@@ -65,6 +65,8 @@
     - [x] [左定宽度右自适应---Position实现](CSS/Flexbox/leftFixedWidth-position.html)
     - [x] [first-child与first-of-type的区别](CSS/CSS3/first-child.html)
     - [x] [移动端适配全攻略](CSS/mobileAdaptation.md)
+    - [x] [top与bottom固定高度，中间内容自适应高度](CSS/quit/autoHeight.html)
+    
     
 
 ## STATEMENT
