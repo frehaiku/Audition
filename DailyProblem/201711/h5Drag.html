@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      font-size: 84%;
+    }
+
+    .dustbin {
+      width: 100px;
+      height: 260px;
+      line-height: 1.4;
+      background-color: gray;
+      font-size: 36px;
+      font-family: "微软雅黑", "Yahei Mono";
+      text-align: center;
+      text-shadow: -1px -1px #bbb;
+      float: left;
+    }
+
+    .dragbox {
+      width: 500px;
+      padding-left: 20px;
+      float: left;
+    }
+
+    .draglist {
+      padding: 10px;
+      margin-bottom: 5px;
+      border: 2px dashed #ccc;
+      background-color: #eee;
+      cursor: move;
+    }
+
+    .draglist:hover {
+      border-color: #cad5eb;
+      background-color: #f0f3f9;
+    }
+
+    .dragremind {
+      padding-top: 2em;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+<div class="dustbin">
+  <br/>
+  垃<br/>
+  圾<br/>箱
+</div>
+<div class="dragbox">
+  <div class="draglist" title="拖拽我" draggable="true">列表1</div>
+  <div class="draglist" title="拖拽我" draggable="true">列表2</div>
+  <div class="draglist" title="拖拽我" draggable="true">列表3</div>
+  <div class="draglist" title="拖拽我" draggable="true">列表4</div>
+  <div class="draglist" title="拖拽我" draggable="true">列表5</div>
+  <div class="draglist" title="拖拽我" draggable="true">列表6</div>
+</div>
+<div class="dragremind"></div>
+
+<script>
+  var init = () => {
+    var dragBoxs = document.querySelector('.dragbox')
+    dragBoxs.addEventListener('dragstart', dragstart, false)
+
+    var dragActive = null
+
+    function dragstart(event) {
+      const t = event.target
+
+      if (t.className !== 'draglist')
+        return false
+      dragActive = t
+      event.dataTransfer.dropEffect = 'link'
+      event.dataTransfer.effectAllowed = 'link'
+      event.dataTransfer.setDragImage(t, 0, 0)
+
+      event.dataTransfer.setData('text', t.textContent)
+    }
+    var dustbin = document.querySelector('.dustbin')
+    dustbin.addEventListener('drop', drop, false)
+    dustbin.addEventListener('dragenter', dragenter, false)
+    dustbin.addEventListener('dragleave', dragleave, false)
+    dustbin.addEventListener('dragover', prevent, false)
+
+    function prevent(event) {
+      event.preventDefault()
+    }
+
+    function dragenter(evt) {
+      prevent.call(null, evt)
+      evt.target.style.color = '#fff'
+    }
+
+    function dragleave(evt) {
+      prevent.call(null, evt)
+      evt.target.style.color = '#000'
+    }
+
+    function drop(event) {
+      event.preventDefault()
+      $remind = document.querySelector('.dragremind')
+      $remind.innerHTML = `<b>"${event.dataTransfer.getData('text')}</b>"被扔进了垃圾箱`
+      dragActive.parentNode.removeChild(dragActive)
+    }
+  }
+  window.onload = init
+</script>
+</body>
+</html>
