@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+  <title>debounce</title>
+  <style>
+    #container{
+      width: 100%;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      color: #fff;
+      background-color: #444;
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="container"></div>
+<script src="debounce.js"></script>
+<script>
+  var count = 1;
+  var container = document.getElementById('container');
+
+  function getUserAction(event) {
+    container.innerHTML = count++;
+    // 函数有返回值
+    return '111';
+  };
+
+  /*container.addEventListener('mousemove', function(){
+    // result 表示返回值
+    var result = debounce(getUserAction, 1000, true)();
+    console.log(result)
+  }, false)*/
+
+  container.addEventListener('mousemove',
+          debounce(getUserAction, 1000, true), false)
+</script>
+</body>
+
+</html>
