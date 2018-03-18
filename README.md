@@ -17,6 +17,13 @@
     - [x] [找出字符串中出现次数最少的字符](Algorithm/objectFindLess.js)
     - [x] [栈的应用-进制转换](Algorithm/dataStructures/radixConvert.js)
     - [x] [栈的应用-回文的判断](Algorithm/dataStructures/isPalindrome.js)
+    - [x] [n个节点可以构成多少种二叉查找树](Algorithm/ACM/findNBSTAcc.js)
+    - [x] [机器人行走路径](Algorithm/ACM/robotWalking.js)
+    - [x] [0-1背包挖金矿](Algorithm/ACM/DP.js)
+    - [x] [第n小的数-最优解（BFPRT算法）](Algorithm/dataStructures/BFPRT.js)
+    - [x] [大数相加](Algorithm/dataStructures/bigNumAdd.js)
+    - [x] [不使用存储空间翻转栈](Algorithm/dataStructures/noStructReverseStack.js)
+    - [x] [找出数组里面比前面都小，后面都大的数](Algorithm/dataStructures/findLeftOfLtRightOfGt.js)
     
 - 计算机网络
     - [x] [在浏览器中输入地址后执行的全部过程](Network/index.md#在浏览器中输入wwwbaiducom后执行的全部过程)
@@ -56,6 +63,8 @@
     - [x] [NodeJS中的Event Loop](EventLoop/Nodejs/README.md)
     - [x] [zepto源码之对象复制](DailyProblem/201706/zeptoExtend.js)
     - [x] [改变对象时自动执行多个绑定函数](JS/autoExecuteMoreHandler.js)
+    - [x] [跟着underscore学防抖](JS/underscore/debouncePage.html)
+    - [x] [跟着underscore学节流](JS/underscore/throttlePage.html)
 
 - css
     - [x] [FlexBox布局之统计图的应用](CSS/Flexbox/diagramChart.html)
