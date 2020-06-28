@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>红包模拟</title>
+  <style>
+    /** {
+      margin: 0;
+      padding: 0;}*/
+    #redPackage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pricelabel {
+      letter-spacing: 4px;
+    }
+
+    label {
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 23px;
+      padding: 20px 0;
+    }
+
+    #run {
+      padding: 5px 50px;
+      border: none;
+      background-color: #a4cfff;
+      color: #fff;
+      border-radius: 3px;
+    }
+
+    #mask {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      left: 0;
+      top: 0;
+    }
+
+    .package {
+      width: 300px;
+      height: 450px;
+      background-color: #ec5250;
+      border-radius: 5px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .close {
+      position: absolute;
+      z-index: 99;
+      color: #5e5247;
+      right: 5%;
+      top: 5%;
+      cursor: pointer;
+    }
+
+    .package p {
+      margin-bottom: 5px;
+    }
+
+    .avatar img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+
+    .name {
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .tip {
+      font-size: 12px;
+      color: #3d444c;
+    }
+
+    .bless {
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .open {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      border-radius: 50%;
+      color: #ffffff;
+      background-color: #ffd69f;
+    }
+
+    .isopen {
+      color: #ffffff;
+      padding: 15px 0;
+    }
+
+    p.opentitle {
+      color: #ffffff;
+      padding: 2px 0;
+    }
+
+    .isopen #price {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .isopen .wrap {
+      width: 250px;
+      height: 150px;
+      overflow-y: scroll;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      border: 1px solid #f5ffb5;
+      border-radius: 5px;
+      font-size: 13px;
+      color: #fff;
+    }
+
+    .isopen .wrap p {
+      padding-left: 15px;
+    }
+
+    .isopen .wrap p em {
+      margin-left: 5px;
+      font-style: normal;
+      color: #ffcd49;
+    }
+  </style>
+</head>
+<body>
+<div id="redPackage">
+  <div class="title">红包模拟器</div>
+  <label>
+    红包个数：
+    <input type="text" id="pgAcc" placeholder="请输入大于1的整数">
+    个
+  </label>
+  <label>
+    <span class="pricelabel">总金额：</span>
+    <input type="text" id="pgTotal" placeholder="请输入大于1的数">
+    元
+  </label>
+  <button id="run">发红包</button>
+
+  <div id="mask" style="display: none;">
+    <div class="package">
+      <span class="close">x</span>
+      <p class="avatar">
+        <img src="http://s3a.pstatp.com/cg_growth/resource/boilerplate/images/redpacket/avatar.png" alt="">
+      </p>
+      <div class="notopen">
+        <p class="name">JScoder</p>
+        <p class="tip">给您发了一个红包</p>
+        <p class="bless">恭喜发财，大吉大利</p>
+        <p class="open">拆红包</p>
+      </div>
+
+      <div class="isopen" style="display: none;">
+        <p id="price">3.01</p>
+        <p class="opentitle">红包领取榜</p>
+        <div class="wrap">
+          <p>用户1：2.01</p>
+          <p>用户1：2.01 <em>手气最佳</em></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.core.js"></script>
+<script>
+  window.onload = init
+
+  function init() {
+    /*测试$.extend看jquery如何解决复制对象中循环引用的问题*/
+    var a = {};
+    var b = {};
+    a.b = b;
+    b.a = a;
+
+
+    console.log(_.clone(a, true));
+
+    var deep = _.clone(b, true)
+
+    console.log(deep)
+    var prodBtn = document.querySelector('#run')
+    var acc = document.querySelector('#pgAcc')
+    var total = document.querySelector('#pgTotal')
+    var mask = document.querySelector('#mask')
+    var money
+    prodBtn.addEventListener('click', function () {
+      var accVal = acc.value
+      var totalVal = total.value
+      var numReg = /^[0-9]+$/
+      if (!(numReg.test(accVal)) && !(numReg.test(totalVal))) {
+        alert('必须输入数字')
+        return false
+      }
+      else if (accVal < 1 || parseInt(accVal) != accVal) {
+        alert('红包个数必须为正整数且大于1')
+        return false
+      } else if (totalVal < 1) {
+        alert('总金额必须大于1')
+        return false
+      }
+
+      money = productPacket(totalVal, accVal, 0.01)
+      mask.style.display = 'block'
+    })
+
+    var openBtn = document.querySelector('.open')
+    var notOpen = document.querySelector('.notopen')
+    var isOpen = document.querySelector('.isopen')
+    var priceShow = document.querySelector('#price')
+    openBtn.addEventListener('click', function () {
+      var max = Math.max.apply(null, money)
+      var dom = ''
+      var item
+      var leng = money.length
+      for (var i = 1; i <= leng; i++) {
+        item = money[i - 1]
+        dom += `<p>用户${i}：${item} ${item == max ? '<em>手气最佳</em>' : ''}</p>`
+      }
+      isOpen.querySelector('.wrap').innerHTML = dom
+      priceShow.textContent = money[~~mathrandom(0, leng - 1)]
+      notOpen.style.display = 'none'
+      isOpen.style.display = 'block'
+    })
+
+    var closeBtn = document.querySelector('.close')
+    closeBtn.addEventListener('click', function () {
+      notOpen.style.display = 'block'
+      isOpen.style.display = 'none'
+      mask.style.display = 'none'
+      money = []
+    })
+  }
+
+  function productPacket(total, num, min) {
+    var money
+    var res = []
+    for (var i = 1; i <= num; i++) {
+      if (i == num) {
+        res.push((+total).toFixed(2))
+      } else {
+        var totalMax = total - (num - i)*0.01
+        money = mathrandom(min * 100, totalMax * 100) / 100;
+        money = money.toFixed(2)
+        total = total - money;
+        res.push(money)
+      }
+
+    }
+    return res
+  }
+
+  function mathrandom(min, max) {
+    return Math.random() * (max - min) + min
+  }
+
+  function clone(sources, target) {
+  }
+  var obj1 = {name: 'xuzhipeng', sex: 'boy'}
+  var empty
+  clone(obj1, empty)
+  console.log(empty)
+  //  console.log(productPacket(10, 5, 0.01))
+</script>
+</body>
+</html>

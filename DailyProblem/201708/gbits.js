@@ -99,8 +99,8 @@ function f3(arr, i, j) {
 function test() {
   // 对数器
   for (var z = 0; z < 500; z++) {
-    var row = ~~(Math.random() * 10) + 1
-    var column = ~~(Math.random() * 10) + 1
+    var row = ~~(Math.random() * 25) + 1
+    var column = ~~(Math.random() * 25) + 1
     var arr = new Array(row)
     var inner
     for (var j = 0; j < row; j++) {

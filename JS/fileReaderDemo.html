@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #thumbmail {
+      display: inline-block;
+    }
+
+    .thumbImg {
+      display: block;
+      width: 200px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+<form action="javascript:;">
+  <label>
+    选择文件
+    <input type="file" name="f" style="display: none;">
+    <span id="thumbmail"></span>
+  </label>
+
+  <div id="dragFileUpload">
+    拖拽文件提交
+  </div>
+</form>
+
+<script>
+  var init = () => {
+    var form = document.forms[0]
+            , fileInput = form.elements['f']
+    fileInput.onchange = (event) => {
+      var reader = new FileReader
+      var blob = event.target.files[0]
+      /*reader.readAsDataURL(blob)
+
+      reader.onload = () => {
+        renderImg(reader.result)
+      }*/
+      renderImg(createObjectURL(blob))
+    }
+
+    var $fileDrag = document.querySelector('#dragFileUpload')
+
+    $fileDrag.addEventListener('drop', drop, false)
+    $fileDrag.addEventListener('dragenter', preventDefault, false)
+    $fileDrag.addEventListener('dragover', preventDefault, false)
+
+  }
+  window.onload = init
+
+  function preventDefault(e) {
+    e.preventDefault()
+  }
+
+  function drop(...args) {
+    preventDefault.apply(null, args)
+    var evt = args[0]
+    renderImg(createObjectURL(evt.dataTransfer.files[0]))
+  }
+
+  function renderImg(url) {
+    document.getElementById('thumbmail').innerHTML = `<img class="thumbImg" src="${url}" />`
+  }
+
+  function createObjectURL(blob) {
+    return window.URL.createObjectURL(blob)
+  }
+</script>
+</body>
+</html>

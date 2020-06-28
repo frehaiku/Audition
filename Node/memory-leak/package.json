@@ -1,0 +1,11 @@
+{
+  "name": "memory-leak",
+  "version": "1.0.0",
+  "description": "Reproduce memory-leak solution",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --expose-gc index.js"
+  },
+  "author": "frehkxu",
+  "license": "ISC"
+}

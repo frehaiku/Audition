@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>select选择文本</title>
+</head>
+<body>
+<form action="javascript:;" name="txtform">
+  <label>
+    请输入不超过300字
+    <textarea name="multi-line" id="" cols="30" rows="10">默认值</textarea>
+
+    <select name="location" id="selLocation" multiple>
+      <option value="Sunnyvale, CA">Sunnyvale</option>
+      <option value="Los Angeles, CA">Los Angeles</option>
+      <option value="Mountain View, CA">Mountain View</option>
+      <option value="">China</option>
+      <option>Australia</option>
+    </select>
+
+    <button type="button" id="btn">获取textarea的值</button>
+    <button type="button" id="addToClipboard">粘贴到剪贴板</button>
+    <button type="button" id="getSel">获取多选框的选中内容</button>
+  </label>
+
+</form>
+
+<script>
+  var f = document.forms['txtform']
+  var textarea = f.elements['multi-line']
+  var multisel = f.elements['location']
+  var btn = document.querySelector('#btn')
+  var clip = document.querySelector('#addToClipboard')
+  var getSelBtn = document.querySelector('#getSel')
+  textarea.focus()
+  textarea.addEventListener('select', function () {
+    if (typeof this.selectionStart === 'number')
+      console.log(this.value.substring(this.selectionStart, this.selectionEnd))
+    else
+      console.log(document.selection.createRange().text)
+  })
+
+  // 新增选项
+  var newOpt = new Option('new option')
+  multisel.add(newOpt, multisel.options[1])
+
+  multisel.addEventListener('change', function () {
+    console.log(this.value)
+    console.log(`select type is ${this.type}`)
+  })
+
+  console.log(`textarea value cut: ${textarea.setSelectionRange(0,2)}`)
+  btn.onclick = function () {
+    console.log(textarea.value)
+  }
+
+  clip.onclick = function (e) {
+    e.clipboardData.setData('text/plain', textarea.value)
+  }
+
+  getSelBtn.onclick = function () {
+    var ans = []
+    var i
+    for (i = 0; i < multisel.options.length; i++)
+      if (multisel.options[i].selected)
+        ans.push(multisel.options[i].value)
+    console.log(ans)
+  }
+</script>
+</body>
+</html>

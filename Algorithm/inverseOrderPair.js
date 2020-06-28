@@ -69,3 +69,20 @@ function merge(a, start, mid, end) {
 }
 
 console.log(InversePairs('1,2,3,4,5,6,7,0'.split(',')))
+
+function FindGreatSum(array) {
+  var size = array.length;
+  var max = array[0];
+  var tmp = max;
+  for (var i = 1; i < size; i++) {
+    var item = array[i];
+    if (tmp >= 0)
+      tmp += item
+    else
+      tmp = item
+    if (tmp > max)
+      max = tmp
+  }
+  return max;
+}
+console.log(FindGreatSum([2, 8, 1, 5, 9]))

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+  <title>touches内置对象</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #chunk {
+      width: 200px;
+      height: 200px;
+      background-color: #b6a7ff;
+      position: fixed;
+      left: 0;
+      top: 0;
+      margin: 130px;
+    }
+
+    #container {
+      margin-left: 50px;
+    }
+    #child {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 50%;
+      top: 50%;transform: translate(-50%, -50%);
+      background-color: #e4ff99;}
+  </style>
+</head>
+<body>
+<div id="container">
+  <div id="chunk">
+    <div id="child"></div>
+  </div>
+</div>
+<script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"></script>
+<script>
+  window.onload = init
+  function init() {
+    var vConsole = new VConsole()
+
+    var $chunk = document.querySelector('#chunk')
+
+    console.log(document.ongesturestart)
+    $chunk.addEventListener('touchstart', touchstr)
+    $chunk.addEventListener('touchmove', touchmove)
+    $chunk.addEventListener('touchend', touchend)
+
+    $chunk.addEventListener('dragstart', touchstr)
+    $chunk.addEventListener('drag', touchmove)
+    $chunk.addEventListener('dragend', touchend)
+
+    let offsetTarL
+    let offsetTarT
+
+    function touchstr(e) {
+      console.log('dragstart')
+      let {pageX, pageY} = (e.touches && e.touches[0]) || e
+      let {left: vpLeft, top: vpTop} = this.getBoundingClientRect()
+//      offsetTarL = pageX - finalOffset(this, 'left')
+//      offsetTarT = pageY - finalOffset(this, 'top')
+      offsetTarL = pageX - vpLeft
+      offsetTarT = pageY - vpTop
+    }
+
+    function touchmove(e) {
+      console.log('drag')
+
+      e.preventDefault()
+      let {pageX, pageY} = (e.touches && e.touches[0]) || e
+//      console.log(`touches count: ${e.touches.length}`)
+//      console.log(`targetTouches count: ${e.targetTouches.length}`)
+//      console.log(`changeTouches count: ${e.changedTouches.length}`)
+      // 消除margin对position定位时的影响
+      let {marginLeft, marginTop} = window.getComputedStyle(this)
+
+      $chunk.style.left = `${pageX - offsetTarL - parseInt(marginLeft)}px`
+      $chunk.style.top = `${pageY - offsetTarT - parseInt(marginTop)}px`
+    }
+
+    function touchend(e) {
+      console.log('touchending')
+
+    }
+
+    function finalOffset(dom, position = 'left') {
+      var p = dom
+      position = `offset${position.slice(0, 1).toUpperCase() + position.slice(1)}`
+      var final = p[position]
+      while ((p = p.offsetParent))
+        final += p[position]
+      return final
+    }
+  }
+</script>
+</body>
+</html>

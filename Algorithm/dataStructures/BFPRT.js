@@ -60,7 +60,7 @@ function partition(arr, left, right, provitIdx) {
 }
 
 function main() {
-  var arr1 = [6,5,4,3,1,14,153,1432,1312, -1, -3]
+  var arr1 = [6,5,4,3,1,14,153,1432,1312]
   var arr1Idx = Bfprt(arr1, 0, arr1.length-1, 2)
   console.log("第2小的数字的索引", arr1Idx)
   console.log("第2小的数字", arr1[arr1Idx])

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>workWorker demo</title>
+</head>
+<body>
+web worker的演示，请打开console看结果
+
+<script>
+  var worker = new Worker('./webWorkerExample.js')
+
+  var data = [7,6,5,4,3,2,1]
+  worker.onmessage = (event) => {
+    console.log(`排序后的数组`)
+    console.log(event.data)
+  }
+  worker.postMessage(data)
+</script>
+</body>
+</html>

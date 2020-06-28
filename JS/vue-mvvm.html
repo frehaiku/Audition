@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue MVVM双向绑定</title>
+</head>
+<body>
+<input type="text" class="input-binding" placeholder="双向绑定测试源码实现">
+<p id="show-input"></p>
+
+<script>
+
+  let ids = {}
+
+  let watUid = 0
+  class Watcher {
+    constructor(vm, attr, expFn) {
+      this.id = watUid++;
+      this.vm = vm
+      this.attr = attr
+      this.expFn = expFn
+      this.run()
+    }
+
+    addSub(dep) {
+      if (!(this.id in ids)) {
+        ids[this.id] = 1
+        dep.addDep(this)
+      }
+    }
+
+    run() {
+      const val = this.getter()
+      if (val !== this.val) {
+        this.val = val
+        this.expFn.call(null, val)
+      }
+    }
+
+    getter() {
+      Dep.target = this
+      const val = this.vm._data[this.attr]
+      Dep.target = null
+      return val
+    }
+  }
+  class Dep {
+    constructor() {
+      this.deps = []
+    }
+
+    depend() {
+      Dep.target.addSub(this)
+    }
+
+    addDep(watcher) {
+      this.deps.push(watcher)
+    }
+
+    notify() {
+      this.deps.forEach(watcher => watcher.run())
+    }
+  }
+
+  class Observer {
+    constructor(object) {
+      this.value = object
+      this.walk()
+    }
+
+    walk() {
+      Object.keys(this.value).forEach(k => this.convert(k, this.value[k]))
+    }
+
+    convert(k, value) {
+      defineReactive(this.value, k, value)
+    }
+  }
+
+  function defineReactive(obj, key, value) {
+    const dep = new Dep()
+    let childOb = observe(value)
+
+    Object.defineProperty(obj, key, {
+      configurable: true,
+      enumerable: true,
+      get() {
+        if (Dep.target) {
+          dep.depend()
+        }
+        return value
+      },
+      set(newVal) {
+        if (value === newVal) return
+        value = newVal
+        childOb = observe(newVal)
+
+        dep.notify()
+      }
+    })
+  }
+
+  function observe(source) {
+    if (typeof source !== 'object') return
+    return new Observer(source)
+  }
+
+  class Vue {
+    constructor(props) {
+      this._data = props.data()
+
+      this._proxy()
+      observe(this._data)
+    }
+
+    $watch(attr, expFn) {
+      new Watcher(this, attr, expFn)
+    }
+
+    _proxy() {
+      Object.keys(this._data).forEach(key => {
+        Object.defineProperty(this, key, {
+          configurable: true,
+          enumerable: true,
+          get() {
+            return this._data[key]
+          },
+          set(newVal) {
+            this._data[key] = newVal
+          }
+        })
+      })
+
+    }
+
+  }
+
+  let demo = new Vue({
+    data() {
+      return {
+        text: ''
+      }
+    }
+  })
+
+  const input = document.querySelector('.input-binding')
+  const p = document.querySelector('#show-input')
+
+  input.addEventListener('input', function (e) {
+    demo.text = e.target.value
+  })
+
+  demo.$watch('text', function (val) {
+    p.textContent = val
+  })
+
+  demo.$watch('text', function (val) {
+    p.style.color = ['red', 'blue', 'green'][~~(Math.random() * 3)]
+  })
+</script>
+</body>
+</html>

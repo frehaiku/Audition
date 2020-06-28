@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>z-index失效的情况</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;}
+    #outer{
+      width: 500px;
+      height: 500px;
+      position: absolute;
+      z-index: 9999;
+      background-color: #c1ff93;
+    }
+    #inner {
+      width: 300px;
+      height: 300px;
+      /*float: left;*/
+      background-color: #f5ffb5;
+    }
+  </style>
+</head>
+<body>
+<div id="outer">
+  <div id="inner"></div>
+</div>
+</body>
+</html>

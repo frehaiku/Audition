@@ -18,7 +18,7 @@ Function.prototype.selfBind = function (oThis) {
   }
   // 若是new运算符时，则继承构造函数的prototype
   // 也便于对new运算符情况的判断 `this instanceof f`
-  f.prototype = this.prototype
+  f.prototype = fnThs.prototype
   fBound.prototype = new f()
   return fBound
 };
@@ -41,14 +41,10 @@ function foo(n) {
   this.name = n
 }
 var obj = {age: 22}
-var bind = foo.bind(obj)
-
-bind('frehaiku')
-// 'frehaiku'
-console.log(obj.name)
+var bind = foo.selfBind(obj)
 
 var bar = new bind('xuzhipeng')
 // 'frehaiku'
-console.log(obj.name)
+console.log(obj)
 // 'xuzhipeng'
-console.log(bar.name)
+console.log(bar)

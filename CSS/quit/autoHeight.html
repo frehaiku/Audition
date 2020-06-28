@@ -2,9 +2,33 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>top与bottom固定高度，中间内容自适应高度</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;}
+    .top {
+      height: 200px;
+      background-color: #ffe7ce;}
+    .bottom {
+      height: 300px;
+      background-color: #e6ffd6;
+    }
+    .side, .content {
+      height: calc((100vh - 200px - 300px) / 2);
+    }
+    .side {
+      background-color: #edaeff;
+    }
+    .content {
+      background-color: #bffff5;
+    }
+  </style>
 </head>
 <body>
-$END$
+<div class="top"></div>
+<div class="side"></div>
+<div class="content"></div>
+<div class="bottom"></div>
 </body>
 </html>

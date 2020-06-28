@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    #myInput {
+      background-image: url('http://cdn.acmcoder.com/client/files/file_j78wuvk9.png');
+      background-position: 10px 12px;
+      background-repeat: no-repeat;
+      width: 100%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+    }
+
+    #myUL {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #myUL li a {
+      border: 1px solid #ddd;
+      margin-top: -1px;
+      background-color: #f6f6f6;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+      display: block;
+    }
+
+    #myUL li a.header {
+      background-color: #e2e2e2;
+      cursor: default;
+    }
+
+    #myUL li a:hover:not(.header) {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="搜索...">
+
+<ul id="myUL">
+  <li><a href="#" class="header">A</a></li>
+  <li><a href="#">ACM</a></li>
+  <li><a href="#">ACMCoder</a></li>
+
+  <li><a href="#" class="header">C</a></li>
+  <li><a href="#">Cameroon</a></li>
+  <li><a href="#">Colombia</a></li>
+
+  <li><a href="#" class="header">D</a></li>
+  <li><a href="#">Decision</a></li>
+  <li><a href="#">Demand</a></li>
+</ul>
+
+<script>
+  const input = document.getElementById('myInput');
+  const myUL = document.getElementById('myUL')
+
+  autoComplete(myUL)
+
+  function myFunction() {
+    myUL.style.display = 'block'
+
+    let curVal = input.value
+    const oA = document.querySelectorAll('#myUL a')
+    for (let i = 0; i < oA.length; i++) {
+      const $a = oA[i]
+      const aText = $a.textContent
+      if (aText.indexOf(curVal) > -1) {
+        const $header = findPrevHeader($a, 'header')
+        $header.style.display = 'block'
+        $a.parentNode.style.display = 'block'
+      } else {
+        $a.parentNode.style.display = 'none'
+      }
+    }
+  }
+
+  function findPrevHeader(ele, className) {
+    let prev = ele.parentNode.previousElementSibling
+    while (prev) {
+      if (prev.firstElementChild.className == className) {
+        return prev
+      }
+      prev = prev.previousElementSibling
+    }
+
+  }
+  function autoComplete(wrapper) {
+    wrapper.addEventListener('click', function (e) {
+      const event = e || window.event
+      const target = event.target || event.srcElement
+      if (target.tagName.toLowerCase() == 'a'
+              && !/header/.test(target.className)) {
+        setInput(target.textContent)
+        wrapper.style.display = 'none'
+      }
+    })
+  }
+
+  function setInput(x) {
+    input.value = x;
+  }
+</script>
+</body>
+</html>

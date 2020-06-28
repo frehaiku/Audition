@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>line-height取不同种值的demo</title>
+  <style>
+    /*line-height的取值为number时，其不会继承父元素的font-size来计算line-height
+      反之，其根据自身元素的font-size来计算line-height
+    */
+    *{
+      margin: 0;
+      padding: 0;}
+    #line-height-use-number, #line-height-use-length, #line-height-use-percentage {
+      background-color: #a19aff;
+      color: #ffffff;
+      font-size: 30px;}
+    .content {font-size: 15px;}
+
+    #line-height-use-number{
+      line-height: 1.5;
+    }
+    #line-height-use-length{
+      line-height: 1.5em;
+    }
+    #line-height-use-percentage {
+      line-height: 150%;
+    }
+  </style>
+</head>
+<body>
+  <div id="line-height-use-number">
+    <p class="content">
+      Avoid unexpected results by using unitless line-height.
+      Length and percentage line-heights have poor inheritance behavior ...
+    </p>
+  </div>
+
+  <div id="line-height-use-length">
+    <p class="content">
+      Avoid unexpected results by using unitless line-height.
+      Length and percentage line-heights have poor inheritance behavior ...
+    </p>
+  </div>
+
+  <div id="line-height-use-percentage">
+    <p class="content">
+      Avoid unexpected results by using unitless line-height.
+      Length and percentage line-heights have poor inheritance behavior ...
+    </p>
+  </div>
+</body>
+</html>

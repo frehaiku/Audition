@@ -5,11 +5,9 @@ function type(obj) {
 function isObject(obj) {
   return type(obj) == 'object'
 }
-
 function isArray(arr) {
   return type(arr) == 'array'
 }
-
 function extend(target, source, deep) {
   for (key in source)
     if (deep && (isObject(source[key]) || isArray(source[key]))) {
@@ -28,7 +26,20 @@ let source = {
   e: 123
 }, target = {}
 
-extend(target, source, true)
+
+function $extends(...args) {
+  let target
+  if (typeof args[0] === 'boolean') {
+    target = args[1]
+    args.slice(2).forEach(e => extend(target, e, true))
+  } else {
+    target = args[0]
+    args.slice(1).forEach(e => extend(target, e))
+  }
+  return target
+}
+
+console.log($extends(true, target, source))
 
 target.a.b = 3
 target.c.push(10)

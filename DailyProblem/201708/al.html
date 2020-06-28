@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="div2">
+  <div id="div1">点我</div>
+</div>
+
+<div id="container">
+
+</div>
+<script>
+  window.onload = function () {
+    var div2 = document.getElementById('div2')
+    var div1 = document.getElementById('div1')
+    div1.addEventListener('click', function (e) {
+      console.log('a')
+    }, true)
+    div2.addEventListener('click', function (e) {
+      console.log('b')
+    })
+    div1.addEventListener('click', function (e) {
+      console.log('c')
+    }, false)
+    div2.addEventListener('click', function (e) {
+      console.log('d')
+    }, true)
+
+    function foo(n) {
+      /* 在此处填写实现 */
+      let container = document.getElementById('container')
+      return function () {
+        let fragment = document.createDocumentFragment()
+        for (let i = 1; i <= n + 1; i++) {
+          let newE = document.createElement('button')
+          newE.textContent = i == n + 1 ? 'all' : i
+          fragment.appendChild(newE)
+        }
+        container.appendChild(fragment)
+
+        addButHandler(container)
+        addAllButHandler(container, n)
+      }
+
+    }
+
+    function addButHandler(wrapper) {
+      wrapper.addEventListener('click', function (e) {
+        let target = e.target
+        if (target.tagName.toLowerCase() == 'button')
+          console.log(target.textContent)
+      })
+    }
+
+    function addAllButHandler(wrapper, n) {
+      wrapper.addEventListener('click', function (e) {
+        let target = e.target
+        if (target.textContent == 'all')
+          for (let i = 1; i <= n; i++)
+            setTimeout(function () {
+              console.log(i)
+            }, i)
+      })
+    }
+
+    const bar = foo(6);
+    bar();
+  }
+
+</script>
+</body>
+</html>

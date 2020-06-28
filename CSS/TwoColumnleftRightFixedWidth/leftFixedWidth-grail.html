@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>左边固定宽度布局</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;}
+    .column {
+      height: 300px;
+      background-color: #3d444c;
+      /*必须设置浮动*/
+      float: left;
+      position: relative;
+    }
+    /*左宽度为200px*/
+    #grail {
+      margin-left: 200px;
+    }
+    .left {
+      margin-left: -100%;
+      position: relative;
+      left: -200px;
+      width: 200px;
+      background-color: #fff09a;
+    }
+    /*必须设置100%，因为默认宽度是其占用的大小*/
+    .right {
+      width: 100%;}
+  </style>
+</head>
+<body>
+<div id="grail">
+  <div class="right column">r</div>
+  <div class="left column">l</div>
+</div>
+</body>
+</html>

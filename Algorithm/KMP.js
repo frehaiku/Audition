@@ -36,4 +36,5 @@ function getNextArray(str) {
   }
   return next
 }
-console.log(kMP('abcabcabx', 'abcabx'))
+console.log(kMP('abcabcabx', 'babcabx'))
+// console.log(kMP('abcabcabx', 'abcabcabx'))

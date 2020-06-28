@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="gb2312">
+  <title>头尾固定中间高度自适应布局</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0
+    }
+
+    #dHead {
+      height: 100px;
+      line-height: 100px;
+      background: #690;
+      width: 100%;
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      text-align: center;
+    }
+
+    #dBody {
+      background: #FC0;
+      width: 100%;
+      overflow: auto;
+      top: 100px;
+      position: absolute;
+      z-index: 10;
+      bottom: 100px;
+    }
+
+    .mycontent {
+      padding: 20px;
+    }
+
+    #dFoot {
+      height: 100px;
+      line-height: 100px;
+      background: #690;
+      width: 100%;
+      position: absolute;
+      z-index: 200;
+      bottom: 0;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+<div id="form">
+  <input type="text" id="txt">
+  <input type="radio" name="fruit" value="西瓜">西瓜
+  <input type="radio" name="fruit" value="哈密瓜">哈密瓜
+  <input type="radio" name="fruit" value="苹果">苹果
+</div>
+<script>
+  window.onload = init
+  function init() {
+    var txt = document.querySelector('#txt')
+    window.onchange = function (e) {
+      var target = e.target
+      if (
+              target.tagName.toLowerCase() == 'input'
+              && target.type == 'radio'
+              && target.checked
+      )
+        txt.value = target.value
+    }
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>左边固定宽度布局</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;}
+    /*左块的宽度为200px*/
+    .column {
+      float: left;
+      position: relative;
+      height: 300px;
+    }
+    #wing {
+      width: 100%;
+    }
+    .right {
+      /*width: 100%;*/
+      margin-left: 200px;
+      height: 300px;
+      background-color: #3d444c;}
+    .left {
+      width: 200px;
+      margin-left: -100%;
+      background-color: #fff09a;}
+  </style>
+</head>
+<body>
+<div id="wing" class="column">
+  <div class="right">r</div>
+</div>
+<div class="left column">l</div>
+</body>
+</html>

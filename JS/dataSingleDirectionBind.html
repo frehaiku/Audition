@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>数据的单向绑定</title>
+</head>
+<body>
+<input type="text" id="age">
+<p>年龄<span id="txt"></span></p>
+
+<script>
+  function update(val) {
+    document.querySelector('#txt').textContent = val
+  }
+
+  function observe(obj, attr, val) {
+    Object.defineProperty(obj, attr, {
+      configurable: true,
+      enumerable: true,
+      get () {
+        return val
+      },
+      set (newVal) {
+        val = newVal
+        update(val)
+      }
+    })
+  }
+
+  function init() {
+    var data = {}
+    var ip = document.querySelector('input#age')
+
+    observe(data, 'age', data['age'])
+
+    ip.addEventListener('input', function () {
+      data.age = this.value
+    }, false)
+  }
+
+  window.onload = init
+
+</script>
+</body>
+</html>
